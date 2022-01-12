@@ -12,7 +12,7 @@ A tool use nodejs, support to delete folder recursively by name, free up storage
 
 ## Usage
 
-> wf
+> wf-dd
 
 
 
