@@ -9,14 +9,12 @@ const DEFAULT_TARGET_REMOVE_DIRECTORY_NAME = 'node_modules'
 const DEFAULT_EXCLUDE_DIRS = ['.git', '.idea', '.gradle', 'coverage', 'test', 'tests', 'src', 'dist']
 const targetPath = process.cwd()
 
-console.log(chalk.green('path: '), __dirname)
 console.log(chalk.green('exec path: '), targetPath)
 
 
 let selectedDeleteArray = []
 let i = 4
 const loader = ['/ deleting.', '| deleting..', '\\ deleting...', '- deleting.']
-const ui = new inquirer.ui.BottomBar({ bottomBar: loader[i % 4] })
 
 function commander () {
   prompt([
@@ -47,8 +45,8 @@ function commander () {
     .then(answers => {
       const targetRemoveDirectoryName = answers.targetRemoveDirectoryName.indexOf(',') ? answers.targetRemoveDirectoryName.split(',') : answers.targetRemoveDirectoryName
       const excludeDirs = answers.excludeDirs
-      console.log('targetPath ', targetPath)
-      console.log('targetRemoveDirectoryName ', targetRemoveDirectoryName)
+      // console.log('targetPath ', targetPath)
+      // console.log('targetRemoveDirectoryName ', targetRemoveDirectoryName)
       return collectAllDirectory(targetPath, excludeDirs, targetRemoveDirectoryName)
     })
     .then(dir => {
@@ -63,9 +61,10 @@ function commander () {
       ])
     })
     .then(answer => {
-      console.log('answer ', answer)
+      // console.log('answer ', answer)
       const deleteChecked = (answer.deleteChecked || [])
       if (deleteChecked.length === 0) {
+        console.log(chalk.greenBright(' empty selection, bye :)'))
         return
       }
       selectedDeleteArray = [...deleteChecked]
@@ -75,8 +74,9 @@ function commander () {
         message: `Please confirm delete this folder \n -- ${(answer.deleteChecked || []).join(',\n -- ')}`,
       }])
         .then(answer => {
-          console.log('delete ,', answer)
+          // console.log('delete ,', answer)
           if (answer.delete) {
+            const ui = new inquirer.ui.BottomBar({ bottomBar: loader[i % 4] })
             const timer = setInterval(() => {
               ui.updateBottomBar(chalk.greenBright(loader[i++ % 4]))
             }, 300)
