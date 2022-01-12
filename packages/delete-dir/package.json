@@ -9,7 +9,10 @@
   "author": "wfsovereign",
   "license": "ISC",
   "bin": {
-    "wf-dd": "./index.js"
+    "wf-dd": "bin/wf-dd"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   },
   "dependencies": {
     "chalk": "^5.0.0",
