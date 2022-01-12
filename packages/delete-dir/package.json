@@ -1,5 +1,5 @@
 {
-  "name": "wf-delete-dir",
+  "name": "wf-delete-dir-cli",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
