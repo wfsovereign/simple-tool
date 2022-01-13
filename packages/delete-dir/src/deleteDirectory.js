@@ -81,14 +81,18 @@ function commander () {
               ui.updateBottomBar(chalk.greenBright(loader[i++ % 4]))
             }, 300)
             return deleteAllDir(selectedDeleteArray).finally(() => {
-              ui.updateBottomBar(chalk.green('delete done √'))
               clearInterval(timer)
+              ui.updateBottomBar(chalk.green('delete done √'))
             })
           }
         })
     })
     .catch((e) => {
       console.log('some exception, bye :)', e)
+    })
+    .finally(() => {
+      console.log(`\n${chalk.yellow('[wf-dd]')} see you next!`)
+      process.exit(0)
     })
 }
 
